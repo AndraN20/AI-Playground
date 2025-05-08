@@ -1,0 +1,15 @@
+C:\Users\andra\source\repos\AIPlayground\AiPlayground.BusinessLogic\obj\Debug\net8.0\AiPlayground.BusinessLogic.csproj.AssemblyReference.cache
+C:\Users\andra\source\repos\AIPlayground\AiPlayground.BusinessLogic\obj\Debug\net8.0\AiPlayground.BusinessLogic.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\andra\source\repos\AIPlayground\AiPlayground.BusinessLogic\obj\Debug\net8.0\AiPlayground.BusinessLogic.AssemblyInfoInputs.cache
+C:\Users\andra\source\repos\AIPlayground\AiPlayground.BusinessLogic\obj\Debug\net8.0\AiPlayground.BusinessLogic.AssemblyInfo.cs
+C:\Users\andra\source\repos\AIPlayground\AiPlayground.BusinessLogic\obj\Debug\net8.0\AiPlayground.BusinessLogic.csproj.CoreCompileInputs.cache
+C:\Users\andra\source\repos\AIPlayground\AiPlayground.BusinessLogic\bin\Debug\net8.0\AiPlayground.BusinessLogic.deps.json
+C:\Users\andra\source\repos\AIPlayground\AiPlayground.BusinessLogic\bin\Debug\net8.0\AiPlayground.BusinessLogic.dll
+C:\Users\andra\source\repos\AIPlayground\AiPlayground.BusinessLogic\bin\Debug\net8.0\AiPlayground.BusinessLogic.pdb
+C:\Users\andra\source\repos\AIPlayground\AiPlayground.BusinessLogic\bin\Debug\net8.0\AiPlayground.DataAccess.dll
+C:\Users\andra\source\repos\AIPlayground\AiPlayground.BusinessLogic\bin\Debug\net8.0\AiPlayground.DataAccess.pdb
+C:\Users\andra\source\repos\AIPlayground\AiPlayground.BusinessLogic\obj\Debug\net8.0\AiPlaygr.451E241F.Up2Date
+C:\Users\andra\source\repos\AIPlayground\AiPlayground.BusinessLogic\obj\Debug\net8.0\AiPlayground.BusinessLogic.dll
+C:\Users\andra\source\repos\AIPlayground\AiPlayground.BusinessLogic\obj\Debug\net8.0\refint\AiPlayground.BusinessLogic.dll
+C:\Users\andra\source\repos\AIPlayground\AiPlayground.BusinessLogic\obj\Debug\net8.0\AiPlayground.BusinessLogic.pdb
+C:\Users\andra\source\repos\AIPlayground\AiPlayground.BusinessLogic\obj\Debug\net8.0\ref\AiPlayground.BusinessLogic.dll

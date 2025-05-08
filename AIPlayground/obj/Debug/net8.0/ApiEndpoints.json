@@ -1,0 +1,207 @@
+[
+  {
+    "ContainingType": "AIPlayground.Controllers.ModelsController",
+    "Method": "GetModels",
+    "RelativePath": "api/Models",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIPlayground.Controllers.ModelsController",
+    "Method": "getModel",
+    "RelativePath": "api/Models/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIPlayground.Controllers.PlatformsController",
+    "Method": "GetPlatforms",
+    "RelativePath": "api/Platforms",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIPlayground.Controllers.PlatformsController",
+    "Method": "GetPlatform",
+    "RelativePath": "api/Platforms/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIPlayground.Controllers.PromptsController",
+    "Method": "GetPrompts",
+    "RelativePath": "api/Prompts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIPlayground.Controllers.PromptsController",
+    "Method": "CreatePrompt",
+    "RelativePath": "api/Prompts",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "promptDto",
+        "Type": "AiPlayground.BusinessLogic.DTOs.PromptCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIPlayground.Controllers.PromptsController",
+    "Method": "GetPrompt",
+    "RelativePath": "api/Prompts/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIPlayground.Controllers.PromptsController",
+    "Method": "DeletePrompt",
+    "RelativePath": "api/Prompts/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIPlayground.Controllers.RunsController",
+    "Method": "CreateRuns",
+    "RelativePath": "api/Runs",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "runCreateDto",
+        "Type": "AiPlayground.BusinessLogic.DTOs.RunCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIPlayground.Controllers.ScopesController",
+    "Method": "GetScopes",
+    "RelativePath": "api/Scopes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIPlayground.Controllers.ScopesController",
+    "Method": "CreateScope",
+    "RelativePath": "api/Scopes",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "scopeDto",
+        "Type": "AiPlayground.BusinessLogic.DTOs.ScopeCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIPlayground.Controllers.ScopesController",
+    "Method": "GetScope",
+    "RelativePath": "api/Scopes/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIPlayground.Controllers.ScopesController",
+    "Method": "UpdateScope",
+    "RelativePath": "api/Scopes/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "scopeDto",
+        "Type": "AiPlayground.BusinessLogic.DTOs.ScopeDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIPlayground.Controllers.ScopesController",
+    "Method": "DeleteScope",
+    "RelativePath": "api/Scopes/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
