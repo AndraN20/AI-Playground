@@ -175,3 +175,4 @@ C:\Users\andra\source\repos\AIPlayground\AIPlayground\bin\Debug\net8.0\AiPlaygro
 C:\Users\andra\source\repos\AIPlayground\AIPlayground\bin\Debug\net8.0\AiPlayground.BusinessLogic.pdb
 C:\Users\andra\source\repos\AIPlayground\AIPlayground\obj\Debug\net8.0\AIPlayground.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\andra\source\repos\AIPlayground\AIPlayground\bin\Debug\net8.0\OpenAI.dll
+C:\Users\andra\source\repos\AIPlayground\AIPlayground\obj\Debug\net8.0\AIPlayground.sourcelink.json

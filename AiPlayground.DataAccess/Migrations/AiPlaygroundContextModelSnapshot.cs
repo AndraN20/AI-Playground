@@ -59,19 +59,19 @@ namespace AiPlayground.DataAccess.Migrations
                         new
                         {
                             Id = 3,
-                            Name = "Gemini 1.5",
+                            Name = "gemini-2.0-flash",
                             PlatformId = 3
                         },
                         new
                         {
                             Id = 4,
-                            Name = "DeepSeek-R1",
+                            Name = "deepseek-reasoner",
                             PlatformId = 2
                         },
                         new
                         {
                             Id = 5,
-                            Name = "DeepSeek-V3",
+                            Name = "deepseek-chat",
                             PlatformId = 2
                         });
                 });

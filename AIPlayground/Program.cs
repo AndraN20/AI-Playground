@@ -1,8 +1,8 @@
-﻿using AiPlayground.BusinessLogic.Interfaces.MapperInterfaces;
+﻿using AiPlayground.BusinessLogic.AIProcessing.Factories;
+using AiPlayground.BusinessLogic.Interfaces.MapperInterfaces;
 using AiPlayground.BusinessLogic.Interfaces.ServiceInterfaces;
 using AiPlayground.BusinessLogic.Mappers;
 using AiPlayground.BusinessLogic.Services;
-using AiPlayground.BusinessLogic.Services.RunCreationStrategy;
 using AiPlayground.DataAccess;
 using AiPlayground.DataAccess.Entities;
 using AiPlayground.DataAccess.Repositories;
@@ -10,10 +10,8 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -35,9 +33,12 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddScoped<IRepository<Scope>, ScopeRepository>();
 builder.Services.AddScoped<IRepository<Prompt>, BaseRepository<Prompt>>();
+builder.Services.AddScoped<IPromptRepository, PromptRepository>();
 builder.Services.AddScoped<IRepository<Run>, BaseRepository<Run>>();
 builder.Services.AddScoped<IRepository<Platform>, PlatformRepository>();
 builder.Services.AddScoped<IRepository<Model>, BaseRepository<Model>>();
+builder.Services.AddScoped<IRunRepository, RunRepository>();
+
 
 builder.Services.AddScoped<IScopeService, ScopeService>();
 builder.Services.AddScoped<IPromptService, PromptService>();
@@ -45,17 +46,19 @@ builder.Services.AddScoped<IPlatformService, PlatformService>();
 builder.Services.AddScoped<IModelService, ModelService>();
 builder.Services.AddScoped<IRunService, RunService>();
 
+
 builder.Services.AddScoped<IModelMapper, ModelMapper>();
 builder.Services.AddScoped<IScopeMapper, ScopeMapper>();
 builder.Services.AddScoped<IPromptMapper, PromptMapper>();
 builder.Services.AddScoped<IPlatformMapper, PlatformMapper>();
 builder.Services.AddScoped<IRunMapper, RunMapper>();
 
-builder.Services.AddTransient<IRunCreationStrategy, OpenAICreationStrategy>();
+builder.Services.AddSingleton<RatingService>();
+
+builder.Services.AddScoped<IAIProcessorFactory, AIProcessorFactory>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

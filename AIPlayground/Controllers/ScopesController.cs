@@ -44,13 +44,9 @@ namespace AIPlayground.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateScope(int id, [FromBody] ScopeDto scopeDto)
+        public async Task<IActionResult> UpdateScope(int id, [FromBody] ScopeCreateDto scopeUpdateDto)
         {
-            if (scopeDto == null || id != scopeDto.Id)
-            {
-                return BadRequest("Scope data is invalid.");
-            }
-            var updatedScope = await _scopeService.UpdateScopeAsync(scopeDto);
+            var updatedScope = await _scopeService.UpdateScopeAsync(id,scopeUpdateDto);
             if (updatedScope == null)
             {
                 return NotFound();

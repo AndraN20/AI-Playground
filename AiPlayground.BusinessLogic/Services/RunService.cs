@@ -1,27 +1,29 @@
-﻿using AiPlayground.BusinessLogic.DTOs;
+﻿using AiPlayground.BusinessLogic.AIProcessing.Factories;
+using AiPlayground.BusinessLogic.DTOs;
 using AiPlayground.BusinessLogic.Enums;
 using AiPlayground.BusinessLogic.Interfaces.MapperInterfaces;
 using AiPlayground.BusinessLogic.Interfaces.ServiceInterfaces;
 using AiPlayground.DataAccess.Entities;
 using AiPlayground.DataAccess.Repositories;
-using OpenAI.Chat;
 
 namespace AiPlayground.BusinessLogic.Services
 {
     public class RunService : IRunService
     {
-        private readonly IRepository<Run> _runRepository;
+        private readonly IRunRepository _runRepository;
         private readonly IRepository<Model> _modelRepository;
         private readonly IRepository<Prompt> _promptRepository;
         private readonly IRunMapper _runMapper;
-        private readonly IEnumerable<IRunCreationStrategy> _platformStrategy;
-        public RunService(IRepository<Run> runRepository, IRepository<Prompt> promptRepository, IRepository<Model> modelRepository, IRunMapper runMapper, IEnumerable<IRunCreationStrategy> strategy)
+        private readonly IAIProcessorFactory iAIProcessorFactory;
+
+
+        public RunService(IRunRepository runRepository, IRepository<Prompt> promptRepository, IRepository<Model> modelRepository, IRunMapper runMapper, IAIProcessorFactory aiProcessorFactory)
         {
             _runRepository = runRepository;
             _modelRepository = modelRepository;
             _promptRepository = promptRepository;
             _runMapper = runMapper;
-            _platformStrategy = strategy;
+            iAIProcessorFactory = aiProcessorFactory;
         }
         public async Task<List<RunDto>> CreateRunsAsync(RunCreateDto runCreateDto)
         {
@@ -31,6 +33,8 @@ namespace AiPlayground.BusinessLogic.Services
             {
                 throw new Exception($"Prompt with ID {runCreateDto.PromptId} not found.");
             }
+
+
             foreach (var modelToRun in runCreateDto.ModelsToRun)
             {
                 var model = await _modelRepository.GetByIdAsync(modelToRun.ModelId);
@@ -39,58 +43,50 @@ namespace AiPlayground.BusinessLogic.Services
                     throw new Exception($"Model with ID {modelToRun.ModelId} not found.");
                 }
                 var platformType = (PlatformType)model.PlatformId;
-                var strategy = _platformStrategy.FirstOrDefault(x => x.PlatformType == platformType);
-                if (strategy == null)
-                {
-                    throw new Exception($"Strategy for platform type {platformType} not found.");
-                }
 
-                
-                
-                var run = await strategy.CreateRunAsync(model, prompt, modelToRun.Temperature);
-                runs.Add(run);
-                
+                var aiProcessor = iAIProcessorFactory.CreateAIProcessor(platformType);
+                var run = await aiProcessor.ProcessAsync(prompt, model,0);
+
+                var createdRun = await CreateRun(run);
+                var runDto = _runMapper.toDto(createdRun);
+
+                runs.Add(runDto);
             }
             return runs;
         }
 
-        private async Task<RunDto> CreateRunAsync(Model model, Prompt prompt, double temperature)
+        public async Task<IEnumerable<RunDto>> GetRunsByModelAsync(int modelId)
         {
-            ChatClient chatClient = new(model: model.Name, apiKey: Environment.GetEnvironmentVariable("OPENAI_API_KEY"));
-            
-            var systemMessage = new SystemChatMessage(prompt.SystemMsg);
-            var userMessage = new UserChatMessage(prompt.UserMessage);
+            var runs = await _runRepository.GetByModelIdAsync(modelId);
+            return runs.Select(_runMapper.toDto);
+        }
 
-            var message = new List<ChatMessage>
+        public async Task<IEnumerable<RunDto>> GetRunsByPromptAsync(int promptId)
+        {
+            var runs = await _runRepository.GetByPromptIdAsync(promptId);
+            return runs.Select(_runMapper.toDto);
+        }
+
+        public async Task<RunDto> UpdateRunAsync(int runId, double rating)
+        {
+            var run = await _runRepository.UpdateAsync(runId, rating);
+            if (run == null)
             {
-                systemMessage,
-                userMessage
-            };
-            var options = new ChatCompletionOptions
-            {
-                Temperature = (float)temperature,
-            };
-            ChatCompletion requestCompletion = await chatClient.CompleteChatAsync(message, options);
-            var actualResponse = requestCompletion.Content.First().Text;
-
-            // Cum ati calcula ratingul?
-            var run = await CreateRun(model.Id, prompt.Id, actualResponse, temperature, 0);
-
+                throw new Exception($"Run with ID {runId} not found.");
+            }
             return _runMapper.toDto(run);
         }
 
-        private async Task<Run> CreateRun(int modelId, int promptId, string actualResponse, double temperature, double rating)
-        {
-            var run = new Run
-            {
-                ModelId = modelId,
-                PromptId = promptId,
-                ActualResponse = actualResponse,
-                Temperature = temperature,
-                Rating = rating
-            };
 
-            await _runRepository.AddAsync(run);
+        private async Task<Run> CreateRun(Run run)
+        {
+            
+
+            var saved_run = await _runRepository.AddAsync(run);
+            if(saved_run == null)
+            {
+                throw new Exception("failed to save the run.");
+            }
 
             return run;
         }

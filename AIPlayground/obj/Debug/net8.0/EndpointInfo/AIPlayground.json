@@ -158,6 +158,69 @@
             "description": "OK"
           }
         }
+      },
+      "patch": {
+        "tags": [
+          "Prompts"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PromptCreateDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PromptCreateDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PromptCreateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/scopes/{id}/prompts": {
+      "get": {
+        "tags": [
+          "Prompts"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/api/Runs": {
@@ -180,6 +243,94 @@
             "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/RunCreateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/models/{id}/runs": {
+      "get": {
+        "tags": [
+          "Runs"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/prompts/{id}/runs": {
+      "get": {
+        "tags": [
+          "Runs"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Runs/{id}": {
+      "put": {
+        "tags": [
+          "Runs"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RunDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RunDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RunDto"
               }
             }
           }
@@ -273,17 +424,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ScopeDto"
+                "$ref": "#/components/schemas/ScopeCreateDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/ScopeDto"
+                "$ref": "#/components/schemas/ScopeCreateDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/ScopeDto"
+                "$ref": "#/components/schemas/ScopeCreateDto"
               }
             }
           }
@@ -376,23 +527,43 @@
         },
         "additionalProperties": false
       },
-      "ScopeCreateDto": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "ScopeDto": {
+      "RunDto": {
         "type": "object",
         "properties": {
           "id": {
             "type": "integer",
             "format": "int32"
           },
+          "modelId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "promptId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "actualResponse": {
+            "type": "string",
+            "nullable": true
+          },
+          "temperature": {
+            "type": "number",
+            "format": "double"
+          },
+          "rating": {
+            "type": "number",
+            "format": "double"
+          },
+          "userRating": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ScopeCreateDto": {
+        "type": "object",
+        "properties": {
           "name": {
             "type": "string",
             "nullable": true

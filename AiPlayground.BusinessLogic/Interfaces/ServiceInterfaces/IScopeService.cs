@@ -7,7 +7,7 @@ namespace AiPlayground.BusinessLogic.Interfaces.ServiceInterfaces
         Task<IEnumerable<ScopeDto>> GetAllScopesAsync();
         Task<ScopeDto> GetScopeByIdAsync(int id);
         Task<ScopeDto> CreateScopeAsync(ScopeCreateDto scopeDto);
-        Task<ScopeDto> UpdateScopeAsync(ScopeDto scopeDto);
+        Task<ScopeDto> UpdateScopeAsync(int id, ScopeCreateDto scopeUpdateDto);
         Task DeleteScopeAsync(int id);
         Task<IEnumerable<PromptDto>> GetPromptsByScopeIdAsync(int scopeId);
     }

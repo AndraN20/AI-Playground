@@ -13,3 +13,4 @@ C:\Users\andra\source\repos\AIPlayground\AiPlayground.BusinessLogic\obj\Debug\ne
 C:\Users\andra\source\repos\AIPlayground\AiPlayground.BusinessLogic\obj\Debug\net8.0\refint\AiPlayground.BusinessLogic.dll
 C:\Users\andra\source\repos\AIPlayground\AiPlayground.BusinessLogic\obj\Debug\net8.0\AiPlayground.BusinessLogic.pdb
 C:\Users\andra\source\repos\AIPlayground\AiPlayground.BusinessLogic\obj\Debug\net8.0\ref\AiPlayground.BusinessLogic.dll
+C:\Users\andra\source\repos\AIPlayground\AiPlayground.BusinessLogic\obj\Debug\net8.0\AiPlayground.BusinessLogic.sourcelink.json

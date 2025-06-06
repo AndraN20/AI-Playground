@@ -3,11 +3,12 @@ namespace AiPlayground.BusinessLogic.Interfaces.ServiceInterfaces
 {
     public interface IRunService
     {
-        //Task<IEnumerable<RunDto>> GetAllRunsAsync();
-        //Task<RunDto> GetRunByIdAsync(int id);
-        Task<List<RunDto>> CreateRunsAsync(RunCreateDto run);
-        //Task<RunDto> UpdateRunAsync(RunDto run);
-        //Task DeleteRunAsync(int id);
 
+        Task<RunDto> UpdateRunAsync(int runId, double userRating);
+
+        Task<IEnumerable<RunDto>> GetRunsByPromptAsync(int promptId);
+        Task<IEnumerable<RunDto>> GetRunsByModelAsync(int modelId);
+
+        Task<List<RunDto>> CreateRunsAsync(RunCreateDto runCreateDto);
     }
 }

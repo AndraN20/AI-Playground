@@ -37,15 +37,16 @@ namespace AiPlayground.BusinessLogic.Services
             var createdScope = await _scopeRepository.AddAsync(scope);
             return _scopeMapper.toDto(createdScope);
         }
-        public async Task<ScopeDto> UpdateScopeAsync(ScopeDto scopeDto)
+        public async Task<ScopeDto> UpdateScopeAsync(int id, ScopeCreateDto scopeUpdateDto)
         {
-            var scope = await _scopeRepository.GetByIdAsync(scopeDto.Id);
+            var scope = await _scopeRepository.GetByIdAsync(id);
             if (scope == null)
             {
-                throw new Exception($"Scope with ID {scopeDto.Id} not found.");
+                throw new Exception($"Scope with ID {id} not found.");
             }
-            await _scopeRepository.UpdateAsync(scope);
-            return _scopeMapper.toDto(scope);
+            scope.Name = scopeUpdateDto.Name;
+            var updatedScope = await _scopeRepository.UpdateAsync(scope);
+            return _scopeMapper.toDto(updatedScope);
         }
         public async Task DeleteScopeAsync(int id)
         {

@@ -32,6 +32,17 @@ namespace AIPlayground.Controllers
             return Ok(prompt);
         }
 
+        [HttpGet("/api/scopes/{id}/prompts")]
+        public async Task<IActionResult> GetPromptsByScopeId(int id)
+        {
+            var prompts = await _promptService.GetPromptsByScopeIdAsync(id);
+            if (prompts == null)
+            {
+                return NotFound();
+            }
+            return Ok(prompts);
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreatePrompt([FromBody] PromptCreateDto promptDto)
         {
@@ -55,6 +66,18 @@ namespace AIPlayground.Controllers
             {
                 return NotFound(ex.Message);
             }
+        }
+
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> UpdatePrompt(int id, [FromBody] PromptCreateDto promptUpdateDto)
+        {
+            
+            var updatedScope = await _promptService.UpdatePromptAsync(id,promptUpdateDto);
+            if (updatedScope == null)
+            {
+                return NotFound();
+            }
+            return Ok(updatedScope);
         }
 
 

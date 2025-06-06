@@ -12,3 +12,4 @@ C:\Users\andra\source\repos\AIPlayground\AiPlayground.DataAccess\obj\Debug\net8.
 C:\Users\andra\source\repos\AIPlayground\AiPlayground.DataAccess\obj\Debug\net8.0\AiPlayground.DataAccess.pdb
 C:\Users\andra\source\repos\AIPlayground\AiPlayground.DataAccess\obj\Debug\net8.0\AiPlayground.DataAccess.genruntimeconfig.cache
 C:\Users\andra\source\repos\AIPlayground\AiPlayground.DataAccess\obj\Debug\net8.0\ref\AiPlayground.DataAccess.dll
+C:\Users\andra\source\repos\AIPlayground\AiPlayground.DataAccess\obj\Debug\net8.0\AiPlayground.DataAccess.sourcelink.json

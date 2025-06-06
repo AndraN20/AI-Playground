@@ -6,8 +6,10 @@ namespace AiPlayground.BusinessLogic.Interfaces.ServiceInterfaces
     {
         Task<IEnumerable<PromptDto>> GetAllPromptsAsync();
         Task<PromptDto> GetPromptByIdAsync(int id);
+
+        Task<IEnumerable<PromptDto>> GetPromptsByScopeIdAsync(int id);
         Task<PromptDto> CreatePromptAsync(PromptCreateDto promptDto);
-        //Task<PromptDto> UpdatePromptAsync(PromptDto promptDto);
+        Task<PromptDto> UpdatePromptAsync(int id, PromptCreateDto promptUpdateDto);
         Task DeletePromptAsync(int id);
     }
 }

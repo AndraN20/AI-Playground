@@ -19,7 +19,7 @@ namespace AiPlayground.BusinessLogic.Mappers
             {
                 Id = platform.Id,
                 Name = platform.Name,
-                BaseUrl = platform.BaseUrl,
+                BaseUrl = platform.ImageUrl,
                 Models = (platform.Models ?? new List<Model>())
                          .Select(_modelMapper.toDto).ToList()
             };
