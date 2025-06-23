@@ -180,9 +180,19 @@
   },
   {
     "ContainingType": "AIPlayground.Controllers.RunsController",
+    "Method": "GetAllRuns",
+    "RelativePath": "api/Runs",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIPlayground.Controllers.RunsController",
     "Method": "UpdateRunAsync",
     "RelativePath": "api/Runs/{id}",
-    "HttpMethod": "PUT",
+    "HttpMethod": "PATCH",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -193,7 +203,7 @@
       },
       {
         "Name": "runDto",
-        "Type": "AiPlayground.BusinessLogic.DTOs.RunDto",
+        "Type": "AiPlayground.BusinessLogic.DTOs.RunRateDto",
         "IsRequired": true
       }
     ],

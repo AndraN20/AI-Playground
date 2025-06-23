@@ -35,7 +35,7 @@ namespace AiPlayground.BusinessLogic.AIProcessing.Processors
                     new DeepSeekMessage
                     {
                         Role = "system",
-                        Content = prompt.SystemMsg
+                        Content = prompt.SystemMessage
                     },
                     new DeepSeekMessage
                     {
@@ -73,7 +73,7 @@ namespace AiPlayground.BusinessLogic.AIProcessing.Processors
 
                 if (deepSeekResponse != null)
                 {
-                    var final_rating = await _ratingService.CalculateFinalRatingAsync(prompt.ExpectedResponse, deepSeekResponse.Choices.First().Message.Content, elapsed_time,prompt.SystemMsg);
+                    var final_rating = await _ratingService.CalculateFinalRatingAsync(prompt.ExpectedResult, deepSeekResponse.Choices.First().Message.Content, elapsed_time,prompt.SystemMessage);
                     Debug.WriteLine($"Final rating is {final_rating}");
 
                     return new Run

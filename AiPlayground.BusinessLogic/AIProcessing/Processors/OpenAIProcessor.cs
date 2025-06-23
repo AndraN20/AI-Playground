@@ -22,7 +22,7 @@ namespace AiPlayground.BusinessLogic.AIProcessing.Processors
 
             ChatClient chatClient = new(model: model.Name, apiKey: Environment.GetEnvironmentVariable("OPENAI_API_KEY"));
 
-            var systemMessage = new SystemChatMessage(prompt.SystemMsg);
+            var systemMessage = new SystemChatMessage(prompt.SystemMessage);
             var userMessage = new UserChatMessage(prompt.UserMessage);
 
             var message = new List<ChatMessage>
@@ -49,7 +49,7 @@ namespace AiPlayground.BusinessLogic.AIProcessing.Processors
             }
             var actualResponse = requestCompletion.Content.First().Text;
 
-            var final_rating = await _ratingService.CalculateFinalRatingAsync(prompt.ExpectedResponse, actualResponse, elapsed_time, prompt.SystemMsg); 
+            var final_rating = await _ratingService.CalculateFinalRatingAsync(prompt.ExpectedResult, actualResponse, elapsed_time, prompt.SystemMessage); 
             Debug.WriteLine($"Final rating is {final_rating}");
 
             return new Run

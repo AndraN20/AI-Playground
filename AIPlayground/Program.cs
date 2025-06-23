@@ -53,7 +53,8 @@ builder.Services.AddScoped<IPromptMapper, PromptMapper>();
 builder.Services.AddScoped<IPlatformMapper, PlatformMapper>();
 builder.Services.AddScoped<IRunMapper, RunMapper>();
 
-builder.Services.AddSingleton<RatingService>();
+builder.Services.AddScoped<RatingService>();
+
 
 builder.Services.AddScoped<IAIProcessorFactory, AIProcessorFactory>();
 

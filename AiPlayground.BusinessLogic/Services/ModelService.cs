@@ -10,39 +10,48 @@ namespace AiPlayground.BusinessLogic.Services
     {
         private readonly IRepository<Model> _modelRepository;
         private readonly IModelMapper _modelMapper;
-        public ModelService(IModelMapper modelMapper, IRepository<Model> modelRepository)
+        private readonly RatingService _ratingService;
+        public ModelService(IModelMapper modelMapper, IRepository<Model> modelRepository, RatingService ratingService)
         {
              _modelRepository = modelRepository;
              _modelMapper = modelMapper;
+            _ratingService = ratingService;
         }
-
-        //public async Task deleteModelAsync(int id)
-        //{
-        //    var model = await _modelRepository.GetByIdAsync(id);
-        //    if (model == null) throw new Exception("Model not found");
-        //    await _modelRepository.DeleteAsync(id);
-        //}
 
         public async Task<IEnumerable<ModelDto>> getAllModelsAsync()
         {
             var models = await _modelRepository.GetAllAsync();
-            return models.Select(_modelMapper.toDto);
+
+            var dtoList = new List<ModelDto>();
+            foreach (var model in models)
+            {
+                var avgRating = await _ratingService.CalculateAverageRatingForModelAsync(model.Id);
+                dtoList.Add(new ModelDto
+                {
+                    Id = model.Id,
+                    Name = model.Name,
+                    AverageRating = avgRating
+                });
+            }
+
+            return dtoList;
         }
+
 
         public async Task<ModelDto> getModelByIdAsync(int id)
         {
             var model = await _modelRepository.GetByIdAsync(id);
             if (model == null) throw new Exception("Model not found");
-            return _modelMapper.toDto(model);
+            var avgRating = await _ratingService.CalculateAverageRatingForModelAsync(model.Id);
+
+            return new ModelDto
+            {
+                Id = model.Id,
+                Name = model.Name,
+                AverageRating = avgRating
+            };
 
         }
-        //public async Task<ModelDto> updateModelAsync(ModelDto modelDto)
-        //{
-        //    var model = await _modelRepository.GetByIdAsync(modelDto.Id);
-        //    if (model == null) throw new Exception("Model not found");
-        //    var updatedModel = await _modelRepository.UpdateAsync(_modelMapper.toEntity(modelDto));
-        //    return _modelMapper.toDto(updatedModel);
-
-        //}
+      
     }
 }

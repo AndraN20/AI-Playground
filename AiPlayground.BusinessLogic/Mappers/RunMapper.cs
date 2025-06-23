@@ -6,6 +6,13 @@ namespace AiPlayground.BusinessLogic.Mappers
 {
     public class RunMapper : IRunMapper
     {
+        private readonly IModelMapper _modelMapper;
+        private readonly IPromptMapper _promptMapper;
+        public RunMapper(IModelMapper modelMapper, IPromptMapper promptMapper)
+        {
+            _modelMapper = modelMapper;
+            _promptMapper = promptMapper;
+        }
         public RunDto toDto(Run run)
         {
             return new RunDto
@@ -16,17 +23,11 @@ namespace AiPlayground.BusinessLogic.Mappers
                 ActualResponse = run.ActualResponse,
                 Rating = run.Rating,
                 UserRating = run.UserRating,
-                Temperature = run.Temperature
-
+                Temperature = run.Temperature,
+                Model = _modelMapper.toDto(run.Model),
+                Prompt = _promptMapper.toDto(run.Prompt)
             };
         }
-        public Run toEntity(RunCreateDto runCreateDto)
-        {
-            return new Run
-            {
-                PromptId = runCreateDto.PromptId
 
-            };
-        }
     }
 }

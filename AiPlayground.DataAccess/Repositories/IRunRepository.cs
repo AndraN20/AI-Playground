@@ -9,6 +9,8 @@ namespace AiPlayground.DataAccess.Repositories
         Task<IEnumerable<Run>> GetByPromptIdAsync(int promptId);
         Task<IEnumerable<Run>> GetByModelIdAsync(int modelId);
 
+        Task<IEnumerable<Run>> GetAllAsyncWithModelAndPrompt();
+
         Task<Run> UpdateAsync(int runId, double rating);
     }
 }

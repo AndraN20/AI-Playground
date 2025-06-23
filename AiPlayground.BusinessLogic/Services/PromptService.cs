@@ -68,9 +68,9 @@ namespace AiPlayground.BusinessLogic.Services
             if (!string.IsNullOrEmpty(promptUpdateDto.Name))
                 prompt.Name = promptUpdateDto.Name;
             if (!string.IsNullOrEmpty(promptUpdateDto.SystemMessage))
-                prompt.SystemMsg = promptUpdateDto.SystemMessage;
+                prompt.SystemMessage = promptUpdateDto.SystemMessage;
             if (!string.IsNullOrEmpty(promptUpdateDto.ExpectedResult))
-                prompt.ExpectedResponse = promptUpdateDto.ExpectedResult;
+                prompt.ExpectedResult = promptUpdateDto.ExpectedResult;
 
             var updatedPrompt = await _promptRepository.UpdateAsync(prompt);
             return _promptMapper.toDto(updatedPrompt);

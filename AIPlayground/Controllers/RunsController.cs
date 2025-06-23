@@ -17,11 +17,7 @@ namespace AIPlayground.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateRuns([FromBody] RunCreateDto runCreateDto)
         {
-            if (runCreateDto.ModelsToRun.Count == 0)
-            {
-                return BadRequest("Invalid run data.");
-            }
-
+           
             var runs = await _runService.CreateRunsAsync(runCreateDto);
 
             return Ok(runs);
@@ -41,13 +37,19 @@ namespace AIPlayground.Controllers
             return Ok(runs);
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateRunAsync(int id, [FromBody]RunDto runDto)
+        [HttpGet]
+        public async Task<IActionResult> GetAllRuns()
         {
-            if (runDto == null || id != runDto.Id)
-            {
-                return BadRequest("Run data is invalid.");
-            }
+            var runs = await _runService.GetAllRuns();
+            return Ok(runs);
+        }
+
+
+
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> UpdateRunAsync(int id, [FromBody]RunRateDto runDto)
+        {
+            
             var updatedRun = await _runService.UpdateRunAsync(id, runDto.UserRating);
             if (updatedRun == null)
             {

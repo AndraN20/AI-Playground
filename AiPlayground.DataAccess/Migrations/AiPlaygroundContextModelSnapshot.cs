@@ -133,7 +133,7 @@ namespace AiPlayground.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("ExpectedResponse")
+                    b.Property<string>("ExpectedResult")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -144,7 +144,7 @@ namespace AiPlayground.DataAccess.Migrations
                     b.Property<int>("ScopeId")
                         .HasColumnType("int");
 
-                    b.Property<string>("SystemMsg")
+                    b.Property<string>("SystemMessage")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

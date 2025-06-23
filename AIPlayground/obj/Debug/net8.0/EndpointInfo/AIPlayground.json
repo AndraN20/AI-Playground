@@ -252,6 +252,16 @@
             "description": "OK"
           }
         }
+      },
+      "get": {
+        "tags": [
+          "Runs"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/api/models/{id}/runs": {
@@ -301,7 +311,7 @@
       }
     },
     "/api/Runs/{id}": {
-      "put": {
+      "patch": {
         "tags": [
           "Runs"
         ],
@@ -320,17 +330,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/RunDto"
+                "$ref": "#/components/schemas/RunRateDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/RunDto"
+                "$ref": "#/components/schemas/RunRateDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/RunDto"
+                "$ref": "#/components/schemas/RunRateDto"
               }
             }
           }
@@ -479,7 +489,7 @@
           },
           "temperature": {
             "type": "number",
-            "format": "double"
+            "format": "float"
           }
         },
         "additionalProperties": false
@@ -527,33 +537,9 @@
         },
         "additionalProperties": false
       },
-      "RunDto": {
+      "RunRateDto": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "modelId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "promptId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "actualResponse": {
-            "type": "string",
-            "nullable": true
-          },
-          "temperature": {
-            "type": "number",
-            "format": "double"
-          },
-          "rating": {
-            "type": "number",
-            "format": "double"
-          },
           "userRating": {
             "type": "number",
             "format": "double"

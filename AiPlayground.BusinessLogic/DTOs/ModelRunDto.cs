@@ -9,6 +9,6 @@ namespace AiPlayground.BusinessLogic.DTOs
     public class ModelRunDto
     {
         public int ModelId { get; set; }
-        public double Temperature { get; set; }
+        public float Temperature { get; set; }
     }
 }

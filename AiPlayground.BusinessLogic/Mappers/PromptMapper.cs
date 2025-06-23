@@ -13,8 +13,8 @@ namespace AiPlayground.BusinessLogic.Mappers
                 Id = prompt.Id,
                 UserMessage = prompt.UserMessage,
                 Name = prompt.Name,
-                SystemMsg = prompt.SystemMsg,
-                ExpectedResponse = prompt.ExpectedResponse
+                SystemMessage = prompt.SystemMessage,
+                ExpectedResult = prompt.ExpectedResult
             };
         }
 
@@ -25,8 +25,8 @@ namespace AiPlayground.BusinessLogic.Mappers
                 UserMessage = promptCreateDto.UserMessage,
                 Name = promptCreateDto.Name,
                 ScopeId = promptCreateDto.ScopeId,
-                SystemMsg = promptCreateDto.SystemMessage,
-                ExpectedResponse = promptCreateDto.ExpectedResult
+                SystemMessage = promptCreateDto.SystemMessage,
+                ExpectedResult = promptCreateDto.ExpectedResult
             };
         }
     }

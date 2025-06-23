@@ -9,6 +9,8 @@ namespace AiPlayground.BusinessLogic.Interfaces.ServiceInterfaces
         Task<IEnumerable<RunDto>> GetRunsByPromptAsync(int promptId);
         Task<IEnumerable<RunDto>> GetRunsByModelAsync(int modelId);
 
+        Task<IEnumerable<RunDto>> GetAllRuns();
+
         Task<List<RunDto>> CreateRunsAsync(RunCreateDto runCreateDto);
     }
 }

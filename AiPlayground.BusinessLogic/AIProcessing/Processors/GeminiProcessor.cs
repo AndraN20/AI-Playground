@@ -40,7 +40,7 @@ namespace AiPlayground.BusinessLogic.AIProcessing.Processors
                 {
                     Parts = new List<Part>
                     {
-                        new Part{ Text = prompt.SystemMsg }
+                        new Part{ Text = prompt.SystemMessage }
                     }
                 },
                 GenerationConfig = new GenerationConfig
@@ -80,7 +80,7 @@ namespace AiPlayground.BusinessLogic.AIProcessing.Processors
                 if (string.IsNullOrWhiteSpace(outputText))
                     throw new Exception("Gemini did not return a valid response.");
 
-                var final_rating = await _ratingService.CalculateFinalRatingAsync(prompt.ExpectedResponse, outputText, elapsed_time, prompt.SystemMsg);
+                var final_rating = await _ratingService.CalculateFinalRatingAsync(prompt.ExpectedResult, outputText, elapsed_time, prompt.SystemMessage);
                 Debug.WriteLine($"Final rating is {final_rating}");
 
                 return new Run

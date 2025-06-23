@@ -15,15 +15,16 @@ namespace AiPlayground.BusinessLogic.Services
         private readonly IRepository<Prompt> _promptRepository;
         private readonly IRunMapper _runMapper;
         private readonly IAIProcessorFactory iAIProcessorFactory;
+        private readonly RatingService _ratingService;
 
-
-        public RunService(IRunRepository runRepository, IRepository<Prompt> promptRepository, IRepository<Model> modelRepository, IRunMapper runMapper, IAIProcessorFactory aiProcessorFactory)
+        public RunService(IRunRepository runRepository, IRepository<Prompt> promptRepository, IRepository<Model> modelRepository, IRunMapper runMapper, IAIProcessorFactory aiProcessorFactory, RatingService ratingService)
         {
             _runRepository = runRepository;
             _modelRepository = modelRepository;
             _promptRepository = promptRepository;
             _runMapper = runMapper;
             iAIProcessorFactory = aiProcessorFactory;
+            _ratingService = ratingService;
         }
         public async Task<List<RunDto>> CreateRunsAsync(RunCreateDto runCreateDto)
         {
@@ -45,10 +46,13 @@ namespace AiPlayground.BusinessLogic.Services
                 var platformType = (PlatformType)model.PlatformId;
 
                 var aiProcessor = iAIProcessorFactory.CreateAIProcessor(platformType);
-                var run = await aiProcessor.ProcessAsync(prompt, model,0);
+                var run = await aiProcessor.ProcessAsync(prompt, model,modelToRun.Temperature);
 
                 var createdRun = await CreateRun(run);
                 var runDto = _runMapper.toDto(createdRun);
+    
+
+
 
                 runs.Add(runDto);
             }
@@ -79,9 +83,7 @@ namespace AiPlayground.BusinessLogic.Services
 
 
         private async Task<Run> CreateRun(Run run)
-        {
-            
-
+        {          
             var saved_run = await _runRepository.AddAsync(run);
             if(saved_run == null)
             {
@@ -91,6 +93,16 @@ namespace AiPlayground.BusinessLogic.Services
             return run;
         }
 
-      
+        public async Task<IEnumerable<RunDto>> GetAllRuns()
+        {
+           var runs = await _runRepository.GetAllAsyncWithModelAndPrompt();
+            if (runs == null || !runs.Any())
+            {
+                throw new Exception("No runs found.");
+            }
+            return runs.Select(_runMapper.toDto);
+        }
+
+
     }
 }
